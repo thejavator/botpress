@@ -1,0 +1,18 @@
+{
+  "name": "my-bot",
+  "version": "0.0.1",
+  "description": "test my bot",
+  "main": "index.js",
+  "dependencies": {
+    "botpress": "1.x",
+    "botpress-messenger": "^2.2.11",
+    "botpress-slack": "^1.0.23",
+    "botpress-web": "1.x"
+  },
+  "scripts": {
+    "start": "botpress start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "me",
+  "license": "Botpress Proprietary License"
+}
