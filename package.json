@@ -5,7 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "botpress": "1.x",
+    "botpress-broadcast": "^2.0.11",
     "botpress-messenger": "^2.2.11",
+    "botpress-nlu": "^0.1.0",
     "botpress-slack": "^1.0.23",
     "botpress-web": "1.x"
   },
