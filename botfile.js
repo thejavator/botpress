@@ -1,4 +1,18 @@
+const isProd = process.env.NODE_ENV === 'production'
+const port = process.env.BOTPRESS_PORT || process.env.PORT || 3000
+const botUrl = isProd ? 'https://my-host.com' : 'http://localhost:' + port
+
 module.exports = {
+  /*
+    The bot's base URL where the bot is reachable from the internet
+   */
+  botUrl: botUrl,
+
+  /*
+    The port on which the API and UI will be available
+   */
+  port: port,
+
   /*
     Where the content is stored
     You can access this property from `bp.dataLocation`
@@ -6,19 +20,29 @@ module.exports = {
   dataDir: process.env.BOTPRESS_DATA_DIR || './data',
 
   /*
-    The port on which the API and UI will be available
-   */
-  port: process.env.BOTPRESS_PORT || process.env.PORT || 3000,
-
-  /*
     Some modules might generate static configuration files
    */
   modulesConfigDir: process.env.BOTPRESS_CONFIG_DIR || './modules_config',
 
   /*
-    Path to Content Forms
+    Path to Content Types
    */
-  formsDir: './forms',
+  contentDir: './content',
+
+  /*
+    Path to Flows
+   */
+  flowsDir: './flows',
+
+  /*
+    Path to Content Types Data
+   */
+  contentDataDir: './content_data',
+
+  /*
+    Path to media / file uploads
+   */
+  mediaDir: './media',
 
   /*
     By default logs are enabled and available in `dataDir`
@@ -27,6 +51,21 @@ module.exports = {
   log: {
     file: 'bot.log',
     maxSize: 1e6 // 1mb
+  },
+
+  /*
+    The web server API config
+   */
+  api: {
+    bodyMaxSize: '1mb'
+  },
+
+  /*
+    Dialog Manager (DM)
+  */
+  dialogs: {
+    timeoutInterval: '15m',
+    janitorInterval: '10s'
   },
 
   /*
@@ -41,6 +80,13 @@ module.exports = {
   notification: {
     file: 'notifications.json',
     maxLength: 50
+  },
+
+  /*
+    By default ghost content management is only activated in production
+   */
+  ghostContent: {
+    enabled: process.env.NODE_ENV === 'production' || process.env.BOTPRESS_GHOST_ENABLED
   },
 
   /*
@@ -69,14 +115,6 @@ module.exports = {
     ssl: process.env.PG_SSL || false
   },
 
-  umm: {
-    /*
-      The file containing the UMM Content (Universal Message Markdown)
-      Can be an absolute or relative path (to your bot location)
-    */
-    contentPath: 'content.yml'
-  },
-
   middleware: {
     /*
       By default Botpress will automatically load all the middlewares before starting your bot
@@ -89,5 +127,19 @@ module.exports = {
   license: {
     // customerId: process.env.BOTPRESS_CUSTOMER_ID || 'your_customer_id_here',
     // licenseKey: process.env.BOTPRESS_LICENSE_KEY || 'your_key_here'
-  }
+  },
+
+  config: {
+    'botpress-nlu': {
+      intentsDir: './intents',
+      entitiesDir: './entities'
+    },
+    // Provider config
+    provider: { type: 'string', required: true, default: 'rasa', env: 'NLU_PROVIDER' },
+
+    // RASA-specific config
+    rasaEndpoint: { type: 'string', required: false, default: 'http://localhost:5000', env: 'NLU_RASA_URL' },
+    rasaToken: { type: 'string', required: false, default: '', env: 'NLU_RASA_TOKEN' },
+    rasaProject: { type: 'string', required: false, default: 'botpress', env: 'NLU_RASA_PROJECT' }    
+  },
 }

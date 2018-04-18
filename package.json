@@ -1,18 +1,21 @@
 {
-  "name": "my-bot",
+  "name": "bot-x-test",
   "version": "0.0.1",
-  "description": "test my bot",
+  "description": "Testing Bot X",
   "main": "index.js",
+  "engines": {
+    "node": ">= 6.1 <= 8.9"
+  },
   "dependencies": {
-    "botpress": "1.x",
-    "botpress-broadcast": "^2.0.11",
-    "botpress-messenger": "^2.2.11",
-    "botpress-nlu": "^0.1.0",
-    "botpress-slack": "^1.0.23",
-    "botpress-web": "1.x"
+    "@botpress/channel-messenger": "^10.0.5",
+    "@botpress/channel-web": "^10.0.10",
+    "@botpress/nlu": "^10.0.3",
+    "botpress": "^10.0.6",
+    "lodash": "^4.17.4"
   },
   "scripts": {
     "start": "botpress start",
+    "ghost-sync": "botpress ghost-sync",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "me",
