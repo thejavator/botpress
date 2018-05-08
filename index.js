@@ -1,56 +1,15 @@
-/*
-  CONGRATULATIONS on creating your first Botpress bot!
-
-  This is the programmatic entry point of your bot.
-  Your bot's logic resides here.
-
-  Here's the next steps for you:
-  1. Read this file to understand how this simple bot works
-  2. Install a connector module (Facebook Messenger and/or Slack)
-  3. Customize your bot!
-
-  Happy bot building!
-
-  The Botpress Team
-  ----
-  Getting Started (Youtube Video): https://www.youtube.com/watch?v=HTpUmDz9kRY
-  Documentation: https://botpress.io/docs
-  Our Slack Community: https://slack.botpress.io
-*/
-
 const _ = require('lodash')
+const jsdoc = require('jsdoc-api')
 
+const renderers = require('./renderers')
+const actions = require('./actions')
+h
 module.exports = bp => {
   // register renderers
-  bp.renderers.register('#welcome', () => [
-    {
-      typing: true,
-      text: _.sample(['Hey there!', 'Hello {{user.first_name}}', 'Good day :)'])
-    },
-    {
-      text: "This is just a regular Hello World, I don't do anything ;)",
-      typing: '2s'
-    },
-    {
-      text: "Make sure to check out the 'index.js' file to see how I work",
-      typing: true
-    },
-    {
-      wait: '5s'
-    },
-    {
-      text: 'You can say goodbye now',
-      typing: '1s'
-    }
-  ])
-
-  bp.renderers.register('#goodbye', () => [
-    {
-      text: 'You are leaving because of reason {{reason}}',
-      typing: true
-    },
-    'Hope to see you back again soon! :)' // if no other properties, you can just send a string
-  ])
+  // Register all renderers
+    Object.keys(renderers).forEach(name => {
+      bp.renderers.register(name, renderers[name])
+    })
 
   // Listens for a first message (this is a Regex)
   // GET_STARTED is the first message you get on Facebook Messenger
@@ -58,6 +17,15 @@ module.exports = bp => {
     event.reply('#welcome')
   })
 
+    ////////////////////////////
+    /// Conversation Management
+    ////////////////////////////
+
+
+    // All events that should be processed by the Flow Manager
+    bp.hear({ type: /text|message|quick_reply/i }, (event, next) => {
+      bp.dialogEngine.processMessage(event.sessionId || event.user.id, event).then()
+    })
   // You can also pass a matcher object to better filter events
   bp.hear(
     {
