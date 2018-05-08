@@ -1,1 +1,80 @@
-{"version":"0.1","catchAll":{},"startNode":"entry","nodes":[{"id":"0f6f7b5889","name":"entry","onEnter":[],"next":[]}]}
+{
+  "version": "0.1",
+  "catchAll": {},
+  "startNode": "Intents_matching",
+  "nodes": [
+    {
+      "id": "0f6f7b5889",
+      "name": "Intents_matching",
+      "onEnter": [
+        "say #!text-Wx24vo"
+      ],
+      "next": [
+        {
+          "condition": "event.nlu.intent.is('bonjour')",
+          "node": "node-41ac"
+        },
+        {
+          "condition": "event.nlu.intent.is('recharge')",
+          "node": "node-51a5"
+        },
+        {
+          "condition": "event.nlu.intent.is('au_revoir')",
+          "node": "node-6b50"
+        }
+      ],
+      "onReceive": []
+    },
+    {
+      "id": "e677d92c48",
+      "name": "node-41ac",
+      "next": [
+        {
+          "condition": "true",
+          "node": "node-dc14"
+        }
+      ],
+      "onEnter": [
+        "say #!text-3xfIy7"
+      ],
+      "onReceive": null
+    },
+    {
+      "id": "dc86a298a8",
+      "name": "node-51a5",
+      "next": [
+        {
+          "condition": "true",
+          "node": "node-dc14"
+        }
+      ],
+      "onEnter": [
+        "say #!text-NCnJ6X"
+      ],
+      "onReceive": null
+    },
+    {
+      "id": "bb2be1f72d",
+      "name": "node-dc14",
+      "next": [
+        {
+          "condition": "true",
+          "node": "Intents_matching"
+        }
+      ],
+      "onEnter": [
+        "say #!text-7IKUlM"
+      ],
+      "onReceive": null
+    },
+    {
+      "id": "0dd4b592d5",
+      "name": "node-6b50",
+      "next": [],
+      "onEnter": [
+        "say #!text-YL_MG0"
+      ],
+      "onReceive": null
+    }
+  ]
+}

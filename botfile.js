@@ -1,12 +1,20 @@
+const yn = require('yn')
 const isProd = process.env.NODE_ENV === 'production'
-const port = process.env.BOTPRESS_PORT || process.env.PORT || 3000
-const botUrl = isProd ? 'https://my-host.com' : 'http://localhost:' + port
+const port = process.env.BOTPRESS_PORT || process.env.PORT || 4000
+const botUrl = process.env.BOTPRESS_URL || 'http://localhost:' + port
 
 module.exports = {
   /*
     The bot's base URL where the bot is reachable from the internet
    */
   botUrl: botUrl,
+
+  /*
+    The botpress environment, useful to disambiguate multiple
+    instances of the same bot running in different environments.
+    e.g. "dev", "staging", "production"
+   */
+  env: process.env.BOTPRESS_ENV || 'dev',
 
   /*
     The port on which the API and UI will be available
@@ -94,6 +102,7 @@ module.exports = {
   */
   login: {
     enabled: process.env.NODE_ENV === 'production',
+    useCloud: yn(process.env.BOTPRESS_CLOUD_ENABLED || 'true'),
     tokenExpiry: '6 hours',
     password: process.env.BOTPRESS_PASSWORD || 'password',
     maxAttempts: 3,
@@ -122,24 +131,22 @@ module.exports = {
      */
     autoLoading: true
   },
-
-  // **** Update this if you bought a Botpress license ****
-  license: {
-    // customerId: process.env.BOTPRESS_CUSTOMER_ID || 'your_customer_id_here',
-    // licenseKey: process.env.BOTPRESS_LICENSE_KEY || 'your_key_here'
-  },
-
   config: {
-    'botpress-nlu': {
-      intentsDir: './intents',
-      entitiesDir: './entities'
-    },
+    intentsDir: { type: 'string', required: true, default: './intents', env: 'NLU_INTENTS_DIR' },
+    entitiesDir: { type: 'string', required: true, default: './entities', env: 'NLU_ENTITIES_DIR' },
+
     // Provider config
     provider: { type: 'string', required: true, default: 'rasa', env: 'NLU_PROVIDER' },
 
     // RASA-specific config
     rasaEndpoint: { type: 'string', required: false, default: 'http://localhost:5000', env: 'NLU_RASA_URL' },
     rasaToken: { type: 'string', required: false, default: '', env: 'NLU_RASA_TOKEN' },
-    rasaProject: { type: 'string', required: false, default: 'botpress', env: 'NLU_RASA_PROJECT' }    
+    rasaProject: { type: 'string', required: false, default: 'botpress', env: 'NLU_RASA_PROJECT' }
   },
-}
+  // **** Update this if you bought a Botpress license ****
+  license: {
+    // customerId: process.env.BOTPRESS_CUSTOMER_ID || 'your_customer_id_here',
+    // licenseKey: process.env.BOTPRESS_LICENSE_KEY || 'your_key_here'
+  }
+
+  }

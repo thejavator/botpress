@@ -1,1 +1,131 @@
-{"nodes":[{"id":"0f6f7b5889","position":{"x":100,"y":100}}],"links":[]}
+{
+  "nodes": [
+    {
+      "id": "0f6f7b5889",
+      "position": {
+        "x": 575,
+        "y": 150
+      }
+    },
+    {
+      "id": "e677d92c48",
+      "position": {
+        "x": 955,
+        "y": 350
+      }
+    },
+    {
+      "id": "dc86a298a8",
+      "position": {
+        "x": 420,
+        "y": 660
+      }
+    },
+    {
+      "id": "bb2be1f72d",
+      "position": {
+        "x": 780,
+        "y": 660
+      }
+    },
+    {
+      "id": "0dd4b592d5",
+      "position": {
+        "x": 380,
+        "y": 380
+      }
+    }
+  ],
+  "links": [
+    {
+      "source": "0f6f7b5889",
+      "sourcePort": "out0",
+      "target": "e677d92c48",
+      "points": [
+        {
+          "x": 782,
+          "y": 226
+        },
+        {
+          "x": 1055,
+          "y": 343
+        }
+      ]
+    },
+    {
+      "source": "0f6f7b5889",
+      "sourcePort": "out1",
+      "target": "dc86a298a8",
+      "points": [
+        {
+          "x": 782,
+          "y": 250
+        },
+        {
+          "x": 520,
+          "y": 653
+        }
+      ]
+    },
+    {
+      "source": "0f6f7b5889",
+      "sourcePort": "out2",
+      "target": "0dd4b592d5",
+      "points": [
+        {
+          "x": 782,
+          "y": 275
+        },
+        {
+          "x": 480,
+          "y": 373
+        }
+      ]
+    },
+    {
+      "source": "e677d92c48",
+      "sourcePort": "out0",
+      "target": "bb2be1f72d",
+      "points": [
+        {
+          "x": 1162,
+          "y": 443
+        },
+        {
+          "x": 880,
+          "y": 653
+        }
+      ]
+    },
+    {
+      "source": "dc86a298a8",
+      "sourcePort": "out0",
+      "target": "bb2be1f72d",
+      "points": [
+        {
+          "x": 627,
+          "y": 753
+        },
+        {
+          "x": 880,
+          "y": 653
+        }
+      ]
+    },
+    {
+      "source": "bb2be1f72d",
+      "sourcePort": "out0",
+      "target": "0f6f7b5889",
+      "points": [
+        {
+          "x": 987,
+          "y": 736
+        },
+        {
+          "x": 675,
+          "y": 143
+        }
+      ]
+    }
+  ]
+}

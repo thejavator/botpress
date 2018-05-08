@@ -1,0 +1,3 @@
+recharge [40000 dhs](some_argent)
+Je veux recharger [200 dhs](some_argent)
+Je veux recharger un recharge de [50 dhs](some_argent)
