@@ -10,7 +10,7 @@
     "@botpress/channel-web": "^10.0.10",
     "@botpress/nlu": "^10.0.3",
     "@botpress/skill-choice": "^10.0.4",
-    "@botpress/channel-messenger": "^10.0.5",
+    "@botpress/channel-messenger": "^10.0.2",
     "botpress": "^10.0.6",
     "jsdoc-api": "^4.0.3",
     "lodash": "^4.17.4",
